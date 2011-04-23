@@ -840,8 +840,11 @@ int source_search_regex(struct sviewer *sview,
                         const char *regex, int opt,
                         int direction, int icase) {
 
-    if ( sview == NULL || sview->cur == NULL || regex == NULL ||
-         strlen(regex) == 0 ) {
+    if ( sview == NULL || sview->cur == NULL ) {
+        return -1;
+    }
+
+    if ( regex == NULL || strlen(regex) == 0 ) {
         sview->cur->buf.cur_line = NULL;
         return -1;
     }
